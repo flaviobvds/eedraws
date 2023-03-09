@@ -1,7 +1,10 @@
 export function TitleSection() {
     return (
-        <div className="mx-auto flex flex-col justify-center">
-            <h1 className="font-sans text-5xl font-bold text-red-700">
+        <div className="ml-5 flex flex-col justify-center sm:mx-auto">
+            <h1 className="font-sans text-3xl font-bold text-red-700 
+                sm:text-4xl 
+                lg:text-5xl"
+            >
                 Never miss a new <br />
                 Express Entry<br />
                 draw again
