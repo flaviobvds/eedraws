@@ -13,7 +13,7 @@ export function SignUpForm() {
 
     return (
         <form
-            className="flex flex-col mt-5 lg:justify-center lg:mt-0 sm:items-center"
+            className="flex flex-col mt-5 lg:justify-center lg:mt-0 sm:items-center relative"
             onSubmit={handleSubmitForm}
         >
             <input
@@ -57,7 +57,8 @@ export function SignUpForm() {
                     md:w-5/12
                     lg:w-3/4
                     xl:w-7/12
-                    lg:mt-7'
+                    lg:mt-7
+                '
             >
                 Sign up
             </button>
