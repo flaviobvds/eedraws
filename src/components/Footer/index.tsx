@@ -10,14 +10,14 @@ export function Footer() {
 
     
     return (
-        <nav className={"flex absolute bottom-3 inset-x-0 justify-center"}>
-            <ul className="px-5 text-lg border-r-2 border-stone-400">
-                <a onClick={handleOpenAbout} className="hover:text-red-700 hover:underline cursor-pointer">
+        <nav className={"flex absolute bottom-2 mx-auto w-80 py-1 inset-x-0 text-black"}>
+            <ul className="text-center text-sm border-r-2 border-stone-400 w-1/2 max-w-xs">
+                <a onClick={handleOpenAbout} className="hover:underline cursor-pointer">
                     About us
                 </a>
             </ul>
-            <ul className="px-5 text-lg ">
-                <a onClick={handleOpenTC} className="hover:text-red-700 hover:underline cursor-pointer">
+            <ul className="text-sm w-1/2 max-w-xs text-center">
+                <a onClick={handleOpenTC} className="hover:underline cursor-pointer">
                     Terms & Conditions
                 </a>
             </ul>
