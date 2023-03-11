@@ -1,13 +1,15 @@
+import { FormEvent, useState } from "react"
+
 import { api } from "@/services/api";
-import { FormEvent, useEffect, useState } from "react"
 import { LoadingScreen } from "../LoadingScreen";
 import { SignUpForm } from "../SignUpForm";
+import { SuccessScreen } from "../SuccessScreen";
 
 export function Subscription() {
 
     const [email, setEmail] = useState('')
     const [agreeTC, setAgreeTC] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState<Boolean | null>(null) // null at start, false when finish loading
 
     function validateEmail(emailAdress: string) {
         const regex = /\S+@\S+\.\S+/;
@@ -37,15 +39,20 @@ export function Subscription() {
         }
     }
 
+    
     if (isLoading) {
-        return <LoadingScreen/>
-    } else {
-        return (
-            <SignUpForm 
-                handleSubmitForm={handleSubmitForm}
-                setEmail={setEmail}
-                setAgreeTC={setAgreeTC}
-            />
-        )
+        return <LoadingScreen />
     }
+
+    if (isLoading === false) {
+        return <SuccessScreen />
+    }
+
+    return (
+        <SignUpForm
+            handleSubmitForm={handleSubmitForm}
+            setEmail={setEmail}
+            setAgreeTC={setAgreeTC}
+        />
+    )
 }
