@@ -1,3 +1,4 @@
+import { api } from "@/services/api";
 import { FormEvent, useState } from "react"
 
 export function SignUpForm() {
@@ -5,10 +6,28 @@ export function SignUpForm() {
     const [email, setEmail] = useState('')
     const [agreeTC, setAgreeTC] = useState(false)
 
+    function validateEmail(emailAdress: string) {
+        const regex = /\S+@\S+\.\S+/;
+        return regex.test(email);
+    }
+
     function handleSubmitForm(e: FormEvent) {
         e.preventDefault();
-        console.log(email)
-        console.log(agreeTC)
+
+        const isValidEmail = (validateEmail(email));
+        if (email && isValidEmail) {
+            
+            if (agreeTC) {
+                api.post('/subscribe', {
+                    email,
+                })
+            } else {
+                alert('To subscribe, you must accept the Terms & Conditions')
+            }
+
+        }  else {
+            alert ('You must inform a valid email address')
+        }
     }
 
     return (

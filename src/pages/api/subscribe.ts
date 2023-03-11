@@ -17,6 +17,7 @@ async function connectToDatabase(uri: string) {
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
         const email: string = req.body.email
+        console.log(email)
 
         const db = await connectToDatabase(process.env.MONGODB_URI!)
         const collection = db.collection('subscribers')
