@@ -1,5 +1,5 @@
 import { Footer } from '@/components/Footer'
-import { SignUpForm } from '@/components/SignUpForm'
+import { Subscription } from '@/components/Subscription'
 import { TitleSection } from '@/components/TitleSection'
 import Head from 'next/head'
 
@@ -17,7 +17,7 @@ export default function Home() {
                     sm:grid-cols-2 sm:grid-rows-none"
                 >
                     <TitleSection/>
-                    <SignUpForm />
+                    <Subscription />
                 </div>
 
                 <Footer/>

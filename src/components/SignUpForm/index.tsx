@@ -1,35 +1,12 @@
-import { api } from "@/services/api";
-import { FormEvent, useState } from "react"
+import { FormEvent } from "react"
 
-export function SignUpForm() {
+interface SigunUpFormProps {
+    handleSubmitForm: (e: FormEvent) => void,
+    setEmail: (email: string) => void,
+    setAgreeTC: (value: boolean) => void
+}
 
-    const [email, setEmail] = useState('')
-    const [agreeTC, setAgreeTC] = useState(false)
-
-    function validateEmail(emailAdress: string) {
-        const regex = /\S+@\S+\.\S+/;
-        return regex.test(email);
-    }
-
-    function handleSubmitForm(e: FormEvent) {
-        e.preventDefault();
-
-        const isValidEmail = (validateEmail(email));
-        if (email && isValidEmail) {
-            
-            if (agreeTC) {
-                api.post('/subscribe', {
-                    email,
-                })
-            } else {
-                alert('To subscribe, you must accept the Terms & Conditions')
-            }
-
-        }  else {
-            alert ('You must inform a valid email address')
-        }
-    }
-
+export function SignUpForm({handleSubmitForm, setEmail, setAgreeTC}: SigunUpFormProps) {
     return (
         <form
             className="flex flex-col mt-5 sm:justify-center lg:mt-0 sm:items-center relative"
