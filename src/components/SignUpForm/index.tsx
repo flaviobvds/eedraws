@@ -17,7 +17,7 @@ export function SignUpForm() {
             onSubmit={handleSubmitForm}
         >
             <input
-                placeholder='E-mail'
+                placeholder='Email'
                 type={'email'}
                 onChange={e => setEmail(e.target.value)}
                 className='p-3 focus:outline-none border-l-2 border-red-700 placeholder:text-black rounded
@@ -41,7 +41,7 @@ export function SignUpForm() {
                     <a
                         className='ml-1 hover:underline text-red-700 cursor-pointer'
                     >
-                        Terms and Conditions
+                        Terms & Conditions
                     </a>
                 </span>
             </div>
