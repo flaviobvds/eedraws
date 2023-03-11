@@ -9,7 +9,7 @@ export function Subscription() {
 
     const [email, setEmail] = useState('')
     const [agreeTC, setAgreeTC] = useState(false)
-    const [isLoading, setIsLoading] = useState<Boolean | null>(null) // null at start, false when finish loading
+    const [status, setStatus] = useState('')
 
     function validateEmail(emailAdress: string) {
         const regex = /\S+@\S+\.\S+/;
@@ -24,11 +24,11 @@ export function Subscription() {
 
             if (agreeTC) {
 
-                setIsLoading(true);
+                setStatus('loading');
                 await api.post('/subscribe', {
                     email,
                 })
-                setIsLoading(false);
+                setStatus('success');
 
             } else {
                 alert('To subscribe, you must accept the Terms & Conditions')
@@ -39,13 +39,13 @@ export function Subscription() {
         }
     }
 
-    
-    if (isLoading) {
-        return <LoadingScreen />
+
+    if (status === 'loading') {
+        return <LoadingScreen email={email} />
     }
 
-    if (isLoading === false) {
-        return <SuccessScreen />
+    if (status === 'success') {
+        return <SuccessScreen email={email} />
     }
 
     return (
