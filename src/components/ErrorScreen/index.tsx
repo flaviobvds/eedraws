@@ -1,24 +1,24 @@
-import { FaCheck } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 
-interface SuccessScreenProps {
+interface ErrorScreenProps {
     email: string
 }
 
-export function SuccessScreen({email}: SuccessScreenProps) {
+export function ErrorScreen({email}: ErrorScreenProps) {
     return (
         <div className='flex flex-col items-center justify-center'>
-            <FaCheck 
+            <FaTimes 
                 size='80'
                 color='#B91C1C'
             />
 
             <h2 className='mt-4 text-center'>
                 <span className='text-red-700 font-bold'>
-                    Success!
+                    Oops! Something went wrong.
                 </span> <br/>
 
-                We sent a confirmation email to <span className='text-red-700'>{email}</span> <br/>
-                If you can't find it, check your spam folder.
+                We couldn't subscribe <span className='text-red-700'>{email}</span> <br/>
+                Check your email and try again.
 
             </h2>
         </div>

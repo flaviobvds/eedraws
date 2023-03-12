@@ -1,10 +1,6 @@
 import { ThreeCircles } from 'react-loader-spinner'
 
-interface LoadingScreenProps {
-    email: string
-}
-
-export function LoadingScreen({ email }: LoadingScreenProps) {
+export function LoadingScreen() {
     return (
         <div className='flex items-center justify-center'>
             <ThreeCircles

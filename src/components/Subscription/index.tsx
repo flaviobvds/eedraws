@@ -4,6 +4,7 @@ import { api } from "@/services/api";
 import { LoadingScreen } from "../LoadingScreen";
 import { SignUpForm } from "../SignUpForm";
 import { SuccessScreen } from "../SuccessScreen";
+import { ErrorScreen } from "../ErrorScreen";
 
 export function Subscription() {
 
@@ -25,10 +26,15 @@ export function Subscription() {
             if (agreeTC) {
 
                 setStatus('loading');
-                await api.post('/subscribe', {
-                    email,
-                })
-                setStatus('success');
+                try {
+                    await api.post('/subscribe', {
+                        email,
+                    })
+                    setStatus('success');
+                }
+                catch(err) {
+                    setStatus('failed');
+                }
 
             } else {
                 alert('To subscribe, you must accept the Terms & Conditions')
@@ -41,11 +47,15 @@ export function Subscription() {
 
 
     if (status === 'loading') {
-        return <LoadingScreen email={email} />
+        return <LoadingScreen />
     }
 
     if (status === 'success') {
         return <SuccessScreen email={email} />
+    }
+
+    if (status === 'failed') {
+        return <ErrorScreen email={email} />
     }
 
     return (
