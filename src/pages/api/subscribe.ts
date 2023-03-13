@@ -9,7 +9,7 @@ async function connectToDatabase(uri: string) {
     }
 
     const client = await MongoClient.connect(uri)
-    const db = client.db('eedrawsUsers')
+    const db = client.db('eedraws')
     cachedDb = db;
     return db;
 }
