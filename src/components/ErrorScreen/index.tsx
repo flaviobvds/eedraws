@@ -2,9 +2,15 @@ import { FaTimes } from 'react-icons/fa'
 
 interface ErrorScreenProps {
     email: string
+    setStatus: (status: string) => void
 }
 
-export function ErrorScreen({email}: ErrorScreenProps) {
+export function ErrorScreen({email, setStatus}: ErrorScreenProps) {
+
+    function handleTryAgain() {
+        setStatus('')
+    }
+
     return (
         <div className='flex flex-col items-center justify-center'>
             <FaTimes 
@@ -21,6 +27,18 @@ export function ErrorScreen({email}: ErrorScreenProps) {
                 Check your email and try again.
 
             </h2>
+
+            <button
+                type='button'
+                onClick={handleTryAgain}
+                className='bg-red-700 text-white text-lg w-1/2 mt-12 h-9 rounded mx-auto hover:opacity-80
+                    sm:w-3/4
+                    xl:w-7/12
+                    lg:mt-7
+                '
+            >
+                Try again
+            </button>
         </div>
     )
 }

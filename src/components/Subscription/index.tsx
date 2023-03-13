@@ -55,7 +55,7 @@ export function Subscription() {
     }
 
     if (status === 'failed') {
-        return <ErrorScreen email={email} />
+        return <ErrorScreen email={email} setStatus={setStatus} />
     }
 
     return (
