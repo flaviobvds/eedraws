@@ -22,13 +22,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const db = await connectToDatabase(process.env.MONGODB_URI!)
         const collection = db.collection('subscribers')
 
-        await collection.insertOne({
-            email,
-            subscribedAt: new Date()
-        })
+        // Check if user already exists. If it doesn't, create a new one.
+        const userExists = await collection.findOne({email}) != null
+        
+        if (userExists) {
+            return res.status(409).send('User already Exists')
+        } else {
+            
+            await collection.insertOne({
+                email,
+                subscribedAt: new Date()
+            })
+            return res.status(201).json({ok: true})
+        }
 
-        return res.status(201).json({ok: true})
-
+    // if method is not POST
     } else {
         res.setHeader('Allow', 'POST')
         res.status(405).end('Method not Allowed')
