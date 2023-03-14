@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { MongoClient, Db } from 'mongodb'
 import axios from "axios";
+import nodefetch from 'node-fetch'
 
 let cachedDb: Db | null = null;
 
@@ -57,22 +58,18 @@ async function connectToDatabase(uri: string) {
 const url = 'https://www.canada.ca/content/dam/ircc/documents/json/ee_rounds_123_en.json'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    
-    console.log('before axios request')
+
     console.time('fetch')
-    const data = await fetch(url)
+    const data = await nodefetch(url)
     console.timeEnd('fetch')
-    
-    //axios.get<JSONResponse>(url)
-    console.log('axios success')
-    const json: JSONResponse = await data.json();
-    console.log('success')
+
+    const json: JSONResponse = (await data.json()) as any;
     const thisDraw = json.rounds[0]
 
     const db = await connectToDatabase(process.env.MONGODB_URI!)
     const collection = db.collection('lastDraws')
 
-    const recentDraw = await collection.find({}).sort({createdAt: -1}).next();
+    const recentDraw = await collection.find({}).sort({ createdAt: -1 }).next();
 
     if (thisDraw.drawNumber != recentDraw?.drawNumber) {
         await collection.insertOne({
