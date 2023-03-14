@@ -59,10 +59,12 @@ const url = 'https://www.canada.ca/content/dam/ircc/documents/json/ee_rounds_123
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     
     console.log('before axios request')
-    const {data, status} = await axios.get<JSONResponse>(url)
+    const data = await fetch(url)
+    //axios.get<JSONResponse>(url)
     console.log('axios success')
-    const thisDraw = data.rounds[0]
-    console.log(thisDraw)
+    const json: JSONResponse = await data.json();
+    console.log('success')
+    const thisDraw = json.rounds[0]
 
     const db = await connectToDatabase(process.env.MONGODB_URI!)
     const collection = db.collection('lastDraws')
@@ -81,5 +83,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.send('new draw')
     }
 
-    res.send(recentDraw?.drawNumber)
+    res.send(thisDraw?.drawNumber)
 }
