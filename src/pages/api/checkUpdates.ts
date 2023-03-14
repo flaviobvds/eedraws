@@ -59,7 +59,10 @@ const url = 'https://www.canada.ca/content/dam/ircc/documents/json/ee_rounds_123
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     
     console.log('before axios request')
+    console.time('fetch')
     const data = await fetch(url)
+    console.timeEnd('fetch')
+    
     //axios.get<JSONResponse>(url)
     console.log('axios success')
     const json: JSONResponse = await data.json();
