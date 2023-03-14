@@ -57,17 +57,17 @@ async function connectToDatabase(uri: string) {
 const url = 'https://www.canada.ca/content/dam/ircc/documents/json/ee_rounds_123_en.json'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    /*
+    
     const {data, status} = await axios.get<JSONResponse>(url)
+    console.log('axios success')
     const thisDraw = data.rounds[0]
-   */
+    console.log(thisDraw)
 
     const db = await connectToDatabase(process.env.MONGODB_URI!)
     const collection = db.collection('lastDraws')
 
     const recentDraw = await collection.find({}).sort({createdAt: -1}).next();
 
-    /*
     if (thisDraw.drawNumber != recentDraw?.drawNumber) {
         await collection.insertOne({
             drawNumber: thisDraw.drawNumber,
@@ -79,7 +79,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         })
         res.send('new draw')
     }
-    */
 
     res.send(recentDraw?.drawNumber)
 }
