@@ -80,8 +80,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             drawSize: thisDraw.drawSize,
             createdAt: new Date()
         })
-        res.send('new draw')
+        return (res.send('new draw'))
     }
 
-    res.send(thisDraw?.drawNumber)
+    return (res.send(thisDraw?.drawNumber))
 }
