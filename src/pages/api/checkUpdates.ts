@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { MongoClient, Db, ObjectId } from 'mongodb'
+import { MongoClient, Db } from 'mongodb'
 import sgMail from '@sendgrid/mail'
 import nodefetch from 'node-fetch'
 
@@ -78,7 +78,7 @@ function html(unsubscribeLink: string) {
 }
 
 async function sendGridMail(email: string, unsubscribeId: string) {
-    const unsubscribeLink = 'https://eedraws.online/unsubscribe/' + unsubscribeId
+    const unsubscribeLink = 'https://www.eedraws.online/unsubscribe/' + unsubscribeId
     
     sgMail.setApiKey(process.env.SENDGRID_API_KEY!)
 
@@ -95,8 +95,6 @@ async function sendGridMail(email: string, unsubscribeId: string) {
     }).catch((error) => {
         console.log(error)
     })
-
-
 }
 
 const url = 'https://www.canada.ca/content/dam/ircc/documents/json/ee_rounds_123_en.json'
@@ -128,7 +126,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             createdAt: new Date()
         })
 
-        // get emails from subscribersCollection
+        // get emails from subscribersCollection and send an email to each of them
         const allUsers = await subscribersCollection.find().map(doc => doc).toArray()
         allUsers.forEach((user) => sendGridMail(user.email, user._id.toString()))
         
