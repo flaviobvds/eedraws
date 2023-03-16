@@ -18,7 +18,9 @@ export default function Unsubscribe() {
 
     return (
         <main className="bg-[url('/images/background.jpg')] h-screen bg-cover bg-no-repeat flex">
-            <div className='m-auto h-5/6 w-11/12 max-w-screen-md bg-white bg-opacity-20 shadow-2xl backdrop-blur rounded flex flex-col justify-center'>
+            <div className='m-auto h-5/6 w-11/12 max-w-screen-md bg-white 
+                bg-opacity-20 shadow-2xl backdrop-blur rounded flex flex-col justify-center'
+            >
                 <h1 className='text-red-700 font-bold text-3xl text-center mt-10 mb-5'>
                     We're sad to see you go
                 </h1>

@@ -79,8 +79,8 @@ function html(unsubscribeLink: string) {
 
 async function sendGridMail(email: string, unsubscribeId: string) {
     const unsubscribeLink = 'https://www.eedraws.online/unsubscribe/' + unsubscribeId
-    
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY!)
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY_TEST!)
+    console.log(email)
 
     const msg = {
         to: email,
@@ -90,10 +90,10 @@ async function sendGridMail(email: string, unsubscribeId: string) {
         html: html(unsubscribeLink)
     }
 
-    await sgMail.send(msg).then(() => {
-        console.log('email sent')
+    return sgMail.send(msg).then(() => {
+        return console.log('email sent')
     }).catch((error) => {
-        console.log(error)
+        return console.log(error.message)
     })
 }
 
@@ -115,7 +115,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const recentDraw = await lastDrawsCollection.find({}).sort({ createdAt: -1 }).next();
 
     if (thisDraw.drawNumber != recentDraw?.drawNumber) {
-        
+
+        // get emails from subscribersCollection and send an email to each of them
+        const allUsers = await subscribersCollection.find().map(doc => doc).toArray()
+        allUsers.forEach(async (user) => {
+            console.log(user.email)
+            await sendGridMail(user.email, user._id.toString())
+        })
+
         // insert newDraw on lastDrawsCollection
         await lastDrawsCollection.insertOne({
             drawNumber: thisDraw.drawNumber,
@@ -125,10 +132,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             drawSize: thisDraw.drawSize,
             createdAt: new Date()
         })
-
-        // get emails from subscribersCollection and send an email to each of them
-        const allUsers = await subscribersCollection.find().map(doc => doc).toArray()
-        allUsers.forEach((user) => sendGridMail(user.email, user._id.toString()))
         
         return (res.send('new draw'))
     }
