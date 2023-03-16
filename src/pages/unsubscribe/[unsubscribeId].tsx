@@ -1,20 +1,56 @@
 import { useRouter } from 'next/router'
+import { useState } from 'react';
+
 import { api } from "@/services/api";
+import { LoadingScreen } from '@/components/LoadingScreen';
+import { Unsubscribed } from '@/components/Unsubscribed';
 
 
-async function unsubscribeUser(id: string) {
-    await api.post('/unsubscribe', {
-        id
-    })
-}
 
 export default function Unsubscribe() {
+    const [status, setStatus] = useState('')
+    const [email, setEmail] = useState('')
     const router = useRouter();
     const { unsubscribeId } = router.query;
 
     function handleUnsubscribeButton() {
+        setStatus('loading')
         unsubscribeUser(unsubscribeId as string)
     }
+
+    async function unsubscribeUser(id: string) {
+        const axiosResponse: any = await api.post('/unsubscribe', {
+            id
+        })
+        const unsubscribedEmail = axiosResponse.data
+        setStatus('unsubscribed')
+        setEmail(unsubscribedEmail)
+    }
+
+    if (status === 'loading') {
+        return (
+            <main className="bg-[url('/images/background.jpg')] h-screen bg-cover bg-no-repeat flex">
+                <div className='m-auto h-5/6 w-11/12 max-w-screen-md bg-white 
+                bg-opacity-20 shadow-2xl backdrop-blur rounded flex flex-col justify-center'
+                >
+                    <LoadingScreen />
+                </div>
+            </main>
+        )
+    }
+
+    if (status === 'unsubscribed') {
+        return (
+            <main className="bg-[url('/images/background.jpg')] h-screen bg-cover bg-no-repeat flex">
+                <div className='m-auto h-5/6 w-11/12 max-w-screen-md bg-white 
+                bg-opacity-20 shadow-2xl backdrop-blur rounded flex flex-col justify-center'
+                >
+                    <Unsubscribed email={email} />
+                </div>
+            </main>
+        )
+    }
+
 
     return (
         <main className="bg-[url('/images/background.jpg')] h-screen bg-cover bg-no-repeat flex">
