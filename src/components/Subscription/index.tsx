@@ -6,7 +6,11 @@ import { SignUpForm } from "../SignUpForm";
 import { SuccessScreen } from "../SuccessScreen";
 import { ErrorScreen } from "../ErrorScreen";
 
-export function Subscription() {
+interface SubscriptionProps {
+    setIsTCModalOpen: (state: boolean) => void;
+}
+
+export function Subscription({setIsTCModalOpen}: SubscriptionProps) {
 
     const [email, setEmail] = useState('')
     const [agreeTC, setAgreeTC] = useState(false)
@@ -63,6 +67,7 @@ export function Subscription() {
             handleSubmitForm={handleSubmitForm}
             setEmail={setEmail}
             setAgreeTC={setAgreeTC}
+            setIsTCModalOpen={setIsTCModalOpen}
         />
     )
 }

@@ -37,7 +37,7 @@ export default function Home() {
                     sm:grid-cols-2 sm:grid-rows-none"
                 >
                     <TitleSection />
-                    <Subscription />
+                    <Subscription setIsTCModalOpen={setIsTCModalOpen}/>
                 </div>
 
                 <Footer

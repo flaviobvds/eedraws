@@ -4,9 +4,10 @@ interface SigunUpFormProps {
     handleSubmitForm: (e: FormEvent) => void,
     setEmail: (email: string) => void,
     setAgreeTC: (value: boolean) => void
+    setIsTCModalOpen: (state: boolean) => void;
 }
 
-export function SignUpForm({handleSubmitForm, setEmail, setAgreeTC}: SigunUpFormProps) {
+export function SignUpForm({handleSubmitForm, setEmail, setAgreeTC, setIsTCModalOpen}: SigunUpFormProps) {
     return (
         <form
             className="flex flex-col mt-5 sm:justify-center lg:mt-0 sm:items-center relative"
@@ -36,6 +37,7 @@ export function SignUpForm({handleSubmitForm, setEmail, setAgreeTC}: SigunUpForm
                     I agree with the
                     <a
                         className='ml-1 hover:underline text-red-700 cursor-pointer'
+                        onClick={() => {setIsTCModalOpen(true)}}
                     >
                         Terms & Conditions
                     </a>
