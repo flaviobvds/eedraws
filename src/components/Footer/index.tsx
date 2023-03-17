@@ -1,11 +1,16 @@
-export function Footer() {
+interface FooterProps {
+    setIsAboutModalOpen: (state: boolean) => void,
+    setIsTCModalOpen: (state: boolean) => void
+}
+
+export function Footer({setIsAboutModalOpen, setIsTCModalOpen}: FooterProps) {
     
     function handleOpenAbout() {
-        console.log('About Open')
+        setIsAboutModalOpen(true)
     }
 
     function handleOpenTC() {
-        console.log('TC Open')
+        setIsTCModalOpen(true)
     }
 
     

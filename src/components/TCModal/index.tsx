@@ -1,4 +1,4 @@
-export function TermsAndConditions() {
+export function TCModal() {
     <div>
         Terms and Conditions
     </div>

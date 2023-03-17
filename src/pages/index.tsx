@@ -1,20 +1,26 @@
+import Head from 'next/head'
+import Link from 'next/link'
+import { useState } from 'react'
+
 import { Footer } from '@/components/Footer'
 import { Subscription } from '@/components/Subscription'
 import { TitleSection } from '@/components/TitleSection'
-import Head from 'next/head'
-import Link from 'next/link'
+import { AboutModal } from '@/components/AboutModal'
+import { TCModal } from '@/components/TCModal'
 
 export default function Home() {
+    const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
+    const [isTCModalOpen, setIsTCModalOpen] = useState(false)
+
     return (
         <>
             <Head>
                 <title>EE Draws Notifier</title>
-                <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <main className="bg-[url('/images/background.jpg')] h-screen bg-cover bg-no-repeat flex relative">
 
-                <Link 
+                <Link
                     href='/'
                     className='absolute h-44 w-44 left-1/2 -top-11 hover:brightness-90 hover:outline-none
                     lg:left-4
@@ -34,7 +40,17 @@ export default function Home() {
                     <Subscription />
                 </div>
 
-                <Footer />
+                <Footer
+                    setIsAboutModalOpen={setIsAboutModalOpen}
+                    setIsTCModalOpen={setIsTCModalOpen}
+                />
+
+                <AboutModal
+                    isOpen={isAboutModalOpen}
+                    setIsAboutModalOpen={setIsAboutModalOpen}
+                />
+                
+                
             </main>
         </>
     )
