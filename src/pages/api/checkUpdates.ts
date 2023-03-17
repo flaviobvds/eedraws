@@ -3,6 +3,8 @@ import { MongoClient, Db } from 'mongodb'
 import sgMail from '@sendgrid/mail'
 import nodefetch from 'node-fetch'
 
+import { newDrawEmailHtml } from "./emailHtmlTemplates/newDrawEmailHtml";
+
 let cachedDb: Db | null = null;
 
 interface Rounds {
@@ -56,26 +58,6 @@ async function connectToDatabase(uri: string) {
     return db;
 }
 
-function html(unsubscribeLink: string) {
-    const html = 
-    `<table style="border-collapse: collapse; width: 100%; max-width: 450px; margin-left: auto; margin-right: auto;">
-        <tbody>
-            <tr style="height: 18px; background-color: #b91c1c;">
-                <td style="width: 100%; height: 18px; text-align: center;">
-                    <h1><span style="color: #ffffff;">Welcome!</span></h1>
-                </td>
-            </tr>
-            <tr style="height: 80px;">
-                <td style="width: 100%; height: 120px;">
-                    <p style="text-align: center;">You have successfully signed up to EE Draws Notifier and, from now on, you won't miss any new Express Entry draw. And the best of all: <span style="color: #b91c1c;"><strong>it's free!</strong></span></p>
-                    <p style="text-align: center;">&nbsp;</p>
-                    <p style="text-align: center;"><span><a style="color: #b91c1c;" href="${unsubscribeLink}">Unsubscribe</a></span></p>
-                </td>
-            </tr>
-        </tbody>
-    </table>`
-    return html
-}
 
 async function sendGridMail(email: string, unsubscribeId: string) {
     const unsubscribeLink = 'https://www.eedraws.online/unsubscribe/' + unsubscribeId
@@ -87,14 +69,13 @@ async function sendGridMail(email: string, unsubscribeId: string) {
         from: 'EE Draws Team <donotreply@eedraws.online>',
         subject: 'New Express Entry Draw',
         text: "IRCC just released a new Express Entry Draw!",
-        html: html(unsubscribeLink)
+        html: newDrawEmailHtml(unsubscribeLink)
     }
 
-    return sgMail.send(msg).then(() => {
-        return console.log('email sent')
-    }).catch((error) => {
-        return console.log(error.message)
-    })
+    return sgMail.send(msg)
+        .then(() => {return console.log('email sent')})
+        .catch((error) => {return console.log(error.message)})
+    ;
 }
 
 const url = 'https://www.canada.ca/content/dam/ircc/documents/json/ee_rounds_123_en.json'

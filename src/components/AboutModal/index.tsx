@@ -41,7 +41,7 @@ export function AboutModal({ isOpen, setIsAboutModalOpen }: AboutModalProps) {
 
             <p className={'mt-6 text-base text-center'}>
                 This is an individual portfolio project by Flavio Silva. If you liked it, please also check 
-                it on Github and my Linkedin page.
+                out my Github and my Linkedin page.
             </p>
 
             <div className={'mt-12 flex justify-center'}>
