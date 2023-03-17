@@ -1,6 +1,7 @@
 export function TitleSection() {
     return (
         <div className="ml-5 flex flex-col justify-center sm:mx-auto">
+            
             <h1 className="font-sans text-3xl font-bold text-red-700 
                 sm:text-3xl 
                 lg:text-5xl"
