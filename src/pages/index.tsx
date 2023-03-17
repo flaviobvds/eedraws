@@ -49,8 +49,13 @@ export default function Home() {
                     isOpen={isAboutModalOpen}
                     setIsAboutModalOpen={setIsAboutModalOpen}
                 />
-                
-                
+
+                <TCModal
+                    isOpen={isTCModalOpen}
+                    setIsTCModalOpen={setIsTCModalOpen}
+                />
+
+
             </main>
         </>
     )
