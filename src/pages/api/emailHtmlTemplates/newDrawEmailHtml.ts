@@ -25,9 +25,11 @@ export function newDrawEmailHtml(unsubscribeLink: string, roundData: Rounds) {
             <tr>
                 <td style="width: 100%; background-color:#DCDCDC;">
                     <p style="text-align: center;">&nbsp;</p>
-                    <p style="text-align: center;">IRCC just released a new Express Entry draw:</p>
+                    <p style="text-align: center; color: #000000">
+                        IRCC just released a new Express Entry draw:
+                    </p>
                     
-                    <table style="margin: 20px auto 50px auto">
+                    <table style="margin: 20px auto 50px auto; color: #000000;">
                         <tbody>
                             <tr>
                                 <th style="text-align: left; width:38%">
