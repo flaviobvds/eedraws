@@ -55,9 +55,19 @@ export default function Unsubscribe() {
     return (
         <main className="bg-[url('/images/background.jpg')] h-screen bg-cover bg-no-repeat flex">
             <div className='m-auto h-5/6 w-11/12 max-w-screen-md bg-white 
-                bg-opacity-20 shadow-2xl backdrop-blur rounded flex flex-col justify-center'
+                bg-opacity-20 shadow-2xl backdrop-blur rounded flex flex-col justify-center items-center px-5'
             >
-                <h1 className='text-red-700 font-bold text-3xl text-center mt-10 mb-5'>
+                <a
+                    href="https://www.eedraws.online/"
+                    className='-mt-16'
+                >
+                    <img
+                        className='h-52'
+                        src="/images/white-logo.svg"
+                    />
+                </a>
+
+                <h1 className='text-red-700 font-bold text-2xl text-center -mt-10 mb-5'>
                     We're sad to see you go
                 </h1>
 
@@ -69,7 +79,7 @@ export default function Unsubscribe() {
                 <button
                     type='button'
                     onClick={handleUnsubscribeButton}
-                    className='bg-red-700 text-white text-lg w-1/2 mt-12 h-9 rounded mx-auto hover:opacity-80
+                    className='bg-red-700 text-white text-lg w-1/2 mt-6 h-9 rounded mx-auto hover:opacity-80
                     sm:w-3/4
                     xl:w-7/12
                     lg:mt-7

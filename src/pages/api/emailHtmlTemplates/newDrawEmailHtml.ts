@@ -8,13 +8,16 @@ export function newDrawEmailHtml(unsubscribeLink: string, roundData: Rounds) {
         <tbody>
             <tr style="height: 18px; background-color: #b91c1c;">
                 <td style="width: 100%; height: 80px; text-align: center; justify-content: center;">
-                    <a href="https://www.eedraws.online/">
+                    <a 
+                        href="https://www.eedraws.online/"
+                        style="margin: auto 30px auto 0px; text-decoration:none; color: #b91c1c;"
+                    >
                         <img 
-                            style="height: 70px; width: 70px; display: inline-block; margin: auto 30px auto 0px; vertical-align:middle" 
+                            style="height: 70px; width: 70px; display: inline-block; vertical-align:middle" 
                             src="https://www.eedraws.online/images/email-red-logo.png" 
                         />
                     </a>
-                    <h2 style="display: inline-block; margin-top: auto; margin-bottom: auto;">
+                    <h2 style="display: inline-block;">
                         <span style="color: #ffffff;">New Express Entry Draw</span>
                     </h2>
                 </td>

@@ -36,7 +36,7 @@ export function AboutModal({ isOpen, setIsAboutModalOpen }: AboutModalProps) {
 
             <p className={'mt-6 text-base text-center'}>
                 Once you sign up, you will start receiving emails from us every time IRCC conducts a
-                new Express Entry draw. You can also subscribe easily at any time with just one click.
+                new Express Entry draw. You can also unsubscribe easily at any time with just one click.
             </p>
 
             <p className={'mt-6 text-base text-center'}>
