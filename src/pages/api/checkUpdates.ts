@@ -7,7 +7,7 @@ import { newDrawEmailHtml } from "./emailHtmlTemplates/newDrawEmailHtml";
 
 let cachedDb: Db | null = null;
 
-interface Rounds {
+export interface Rounds {
     drawNumber: string,
     drawNumberURL: string,
     drawDate: string,
@@ -59,7 +59,7 @@ async function connectToDatabase(uri: string) {
 }
 
 
-async function sendGridMail(email: string, unsubscribeId: string) {
+async function sendGridMail(email: string, unsubscribeId: string, roundData: Rounds) {
     const unsubscribeLink = 'https://www.eedraws.online/unsubscribe/' + unsubscribeId
     sgMail.setApiKey(process.env.SENDGRID_API_KEY_TEST!)
     console.log(email)
@@ -69,7 +69,7 @@ async function sendGridMail(email: string, unsubscribeId: string) {
         from: 'EE Draws Team <donotreply@eedraws.online>',
         subject: 'New Express Entry Draw',
         text: "IRCC just released a new Express Entry Draw!",
-        html: newDrawEmailHtml(unsubscribeLink)
+        html: newDrawEmailHtml(unsubscribeLink, roundData)
     }
 
     return sgMail.send(msg)
@@ -101,7 +101,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const allUsers = await subscribersCollection.find().map(doc => doc).toArray()
         allUsers.forEach(async (user) => {
             console.log(user.email)
-            await sendGridMail(user.email, user._id.toString())
+            await sendGridMail(user.email, user._id.toString(), thisDraw)
         })
 
         // insert newDraw on lastDrawsCollection

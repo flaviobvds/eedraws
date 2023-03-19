@@ -5,8 +5,8 @@ export function welcomeEmailHtml(unsubscribeLink: string) {
             <tr style="height: 18px; background-color: #b91c1c;">
             <td style="width: 100%; height: 80px; text-align: center; display: flex; justify-content: center;">
                 <img 
-                    style="height: 160px; width: 160px; margin-top: -40px; margin-left: -80px;" 
-                    src="https://www.eedraws.online/images/red-logo.png" 
+                    style="height: 70px; width: 70px; margin:auto 50px auto 0;"
+                    src="https://www.eedraws.online/images/email-red-logo.png"
                 />
                 <h1 style="margin-top: auto; margin-bottom: auto;">
                     <span style="color: #ffffff;">Welcome!</span>
