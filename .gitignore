@@ -36,6 +36,6 @@ yarn-error.log*
 next-env.d.ts
 
 # print_screens
-/prints
+screenshots
 
 .vercel
