@@ -8,7 +8,7 @@ The objective of this project is to make it easier for Express Entry candidates 
 
 ## Tech Used
 
-<img src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" width="40" height="40">&nbsp;<img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" width="40" height="40">&nbsp;<img src="https://user-images.githubusercontent.com/25181517/202896760-337261ed-ee92-4979-84c4-d4b829c7355d.png" width="40" height="40">&nbsp;<img src="https://user-images.githubusercontent.com/25181517/182884177-d48a8579-2cd0-447a-b9a6-ffc7cb02560e.png" width="40" height="40">&nbsp;<img src="https://jlannoo.dev/skills/next.png" width="40" height="40">
+<img src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" width="40" height="40">&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" width="40" height="40">&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/25181517/202896760-337261ed-ee92-4979-84c4-d4b829c7355d.png" width="40" height="40">&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/25181517/182884177-d48a8579-2cd0-447a-b9a6-ffc7cb02560e.png" width="40" height="40">&nbsp;&nbsp;&nbsp;<img src="https://jlannoo.dev/skills/next.png" width="40" height="40">
 <br/>
 
 This is a front-end project created using `create next app`. I used React as the framework and it's 100% written using **Typescript**. The styles were created using **Tailwind CSS**. Users and Draws data are stored in a **mongoDB** database. As the whole project uses **NextJS**, it's also hosted on **Vercel** using their free hosting option.
