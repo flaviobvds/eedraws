@@ -80,7 +80,7 @@ async function sendGridMail(email: string, unsubscribeId: string, roundData: Rou
 
 const url = 'https://www.canada.ca/content/dam/ircc/documents/json/ee_rounds_123_en.json'
 
-export async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     console.time('fetch')
     const data = await nodefetch(url)
