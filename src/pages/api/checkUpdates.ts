@@ -89,7 +89,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const json: JSONResponse = (await data.json()) as any;
     const thisDraw = json.rounds[0]
     console.log(thisDraw)
-    console.log(json)
 
     const db = await connectToDatabase(process.env.MONGODB_URI!)
     const lastDrawsCollection = db.collection('lastDraws')
